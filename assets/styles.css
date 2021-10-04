@@ -61,6 +61,7 @@ header a {
   border-radius: 20px;
 }
 
+.input-btn,
 .myButton {
   background: linear-gradient(to bottom, #fe1a00 5%, #ce0100 100%);
   background-color: #fe1a00;
@@ -76,10 +77,13 @@ header a {
   padding: 6px 24px;
   text-decoration: none;
 }
+.input-btn:hover,
 .myButton:hover {
   background: linear-gradient(to bottom, #ce0100 5%, #fe1a00 100%);
   background-color: #ce0100;
 }
+
+.input-btn:active,
 .myButton:active {
   position: relative;
   top: 1px;
@@ -97,24 +101,30 @@ header a {
 form {
   display: flex;
   flex-direction: row;
-  padding: 2px;
+  padding: 2rem;
 }
 
 input {
   flex-grow: 2;
   border: none;
   border-radius: 10px 0px 0px 10px;
+  padding: 1rem;
 }
 
 input:focus {
-  /* removing the input focus blue box. Put this on the form if you like. */
   outline: none;
 }
 
 .input-btn {
-  /* Just a little styling to make it pretty */
-  border: none;
-  background: red;
-  color: white;
   border-radius: 0px 10px 10px 0px;
+}
+
+@media (max-width: 767.98px) {
+  .start-container {
+    max-width: 80%;
+  }
+  .sm-question-font {
+    font-size: 2rem;
+    margin-top: 0;
+  }
 }

@@ -1,11 +1,31 @@
 console.log("hello");
 
 const questionsArray = [
-  { questions: "", answers: ["", "", "", ""], correctAnswer: "" },
-  { questions: "", answers: ["", "", "", ""], correctAnswer: "" },
-  { questions: "", answers: ["", "", "", ""], correctAnswer: "" },
-  { questions: "", answers: ["", "", "", ""], correctAnswer: "" },
-  { questions: "", answers: ["", "", "", ""], correctAnswer: "" },
+  {
+    questions: "question 1",
+    answers: ["Q1Answer1", "Q1Answer2", "Q1Answer3", "Q1Answer4"],
+    correctAnswer: "Q1Answer1",
+  },
+  {
+    questions: "question 2",
+    answers: ["Q2Answer1", "Q2Answer2", "Q2Answer3", "Q2Answer4"],
+    correctAnswer: "Q2Answer2",
+  },
+  {
+    questions: "question 3",
+    answers: ["Q3Answer1", "Q3Answer2", "Q3Answer3", "Q3Answer4"],
+    correctAnswer: "Q3Answer3",
+  },
+  {
+    questions: "question 4",
+    answers: ["Q4Answer1", "Q4Answer2", "Q4Answer3", "Q4Answer4"],
+    correctAnswer: "Q4Answer4",
+  },
+  {
+    questions: "question 5",
+    answers: ["Q5Answer1", "Q5Answer2", "Q5Answer3", "Q5Answer4"],
+    correctAnswer: "Q5Answer1",
+  },
 ];
 
 const currentQuestion = 0;

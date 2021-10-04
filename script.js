@@ -1,4 +1,4 @@
-console.log("hello");
+console.log(document.body.children);
 
 const questionsArray = [
   {

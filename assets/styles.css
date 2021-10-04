@@ -84,3 +84,12 @@ header a {
   position: relative;
   top: 1px;
 }
+
+.answer-btn-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.answer-btn-container button {
+  margin: 5px;
+}

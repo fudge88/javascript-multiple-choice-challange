@@ -38,3 +38,7 @@ THEN the game is over
 WHEN the game is over
 THEN I can save my initials and my score
 ```
+
+## refernces:
+
+Photo by <a href="https://unsplash.com/@saaam_chan?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Samuel Berner</a> on <a href="https://unsplash.com/s/photos/anime?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>

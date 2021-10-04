@@ -10,14 +10,6 @@ const questionsArray = [
 
 const currentQuestion = 0;
 
-const timer = function () {};
-// if timer reaches 0 render gameOver
-
-const gameOver = function () {};
-// removes question
-// div showing game over
-// append to main
-
 const startQuiz = function () {};
 // clicking start button - start-container ID should
 // - remove the container div
@@ -65,3 +57,11 @@ const renderHighScore = function () {};
 // append to parent
 
 const clearLocalStorage = function () {};
+
+const timer = function () {};
+// if timer reaches 0 render gameOver
+
+const gameOver = function () {};
+// removes question
+// div showing game over
+// append to main

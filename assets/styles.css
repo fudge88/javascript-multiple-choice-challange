@@ -93,3 +93,28 @@ header a {
 .answer-btn-container button {
   margin: 5px;
 }
+
+form {
+  display: flex;
+  flex-direction: row;
+  padding: 2px;
+}
+
+input {
+  flex-grow: 2;
+  border: none;
+  border-radius: 10px 0px 0px 10px;
+}
+
+input:focus {
+  /* removing the input focus blue box. Put this on the form if you like. */
+  outline: none;
+}
+
+.input-btn {
+  /* Just a little styling to make it pretty */
+  border: none;
+  background: red;
+  color: white;
+  border-radius: 0px 10px 10px 0px;
+}

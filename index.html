@@ -6,21 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JavaScript Multiple Choice Challenge</title>
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./assets/styles.css" />
   </head>
   <body>
     <header>
       <div><a href="#">View Highest Scores</a></div>
-      <div>Timer: 
+      <div>
+        Timer:
         <span id="timer">0</span>
       </div>
     </header>
     <body class="background-img">
-      <div class="main-container">
-        <div id="start-container" class="start-container">
+      <main class="main-container">
+        <!-- start div -->
+        <!-- <div id="start-container" class="start-container">
           <h1>JavaScript Challenge</h1>
           <p>
             Aim to get the answers right! Incorrect answers will deduct 5 seconds
@@ -31,10 +36,10 @@
           <div>
             <button id="start-quiz" class="myButton">Start</button>
           </div>
-        </div>
+        </div> -->
 
-
-        <div id="start-container" class="start-container">
+        <!-- questions div -->
+        <!-- <div id="questions-container" class="start-container">
           <h1>Question one on javascript goes here</h1>
           <div class="answer-btn-container">
             <button id="start-quiz" class="myButton">Answer 1</button>
@@ -42,9 +47,23 @@
             <button id="start-quiz" class="myButton">Answer 3</button>
             <button id="start-quiz" class="myButton">Answer 4</button>
           </div>
-        </div>
+        </div> -->
 
-      </div>
+        <!-- Score div -->
+        <div id="score-container" class="start-container">
+          <h1>Challenge Complete!</h1>
+          <p>You Scored:<span>0</span></p>
+          <form action="">
+            <input
+              type="text"
+              name=""
+              id=""
+              placeholder="Enter name here to save score"
+            />
+          </form>
+          <button>Submit</button>
+        </div>
+      </main>
     </body>
 
     <script src="script.js"></script>

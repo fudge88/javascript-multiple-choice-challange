@@ -5,10 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JavaScript Multiple Choice Challenge</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&family=Source+Code+Pro:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./assets/styles.css" />
   </head>
   <body>
-    <h1>JavaScript Multiple Choice Challenge</h1>
+    <header>
+      <div><a href="#">View Highest Scores</a></div>
+      <div>
+        <span id="timer">Timer: 0</span>
+      </div>
+    </header>
+    <body>
+      <div id="start-container" class="start-container">
+        <h1>JavaScript Challenge</h1>
+        <p>
+          Aim to get the answer right! Incorrect answers will deduct 5 seconds
+          from your timer. Can you you beat the quickest time?
+        </p>
+        <p>Click on Start to begin</p>
+        <div>
+          <button id="start-quiz">Start</button>
+        </div>
+      </div>
+    </body>
+
     <script src="script.js"></script>
   </body>
 </html>

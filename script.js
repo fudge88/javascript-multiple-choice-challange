@@ -98,10 +98,23 @@ const renderHighScore = function () {};
 
 const clearLocalStorage = function () {};
 
+// timer
 let counter = 3;
 
 const counterSpan = document.getElementById("timer");
+const counterDiv = document.getElementById("counter-div");
+const mainElement = document.getElementById("main");
+// const questionsDiv = document.getElementById("questions-container");
 
+const gameOver = function () {
+  // counterDiv.remove();
+  questionsDiv.remove();
+  const img = document.createElement("img");
+  img.setAttribute("src", "./assets/images/anime-blood.png");
+  mainElement.append(img);
+};
+
+// timer function
 const countDown = function () {
   if (counter < 0) {
     console.log("GAME OVER");
@@ -114,7 +127,7 @@ const countDown = function () {
 const timer = setInterval(countDown, 1000);
 // if timer reaches 0 render gameOver
 
-const gameOver = function () {};
+// const gameOver = function () {};
 // removes question
 // div showing game over
 // append to main

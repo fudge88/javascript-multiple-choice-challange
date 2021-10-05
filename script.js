@@ -31,13 +31,13 @@ const questionsArray = [
 const currentQuestion = 0;
 
 const startQuiz = function () {
+  // clicking start button - start-container ID should
+  // - remove the container div
   const startContainer = document.getElementById("start-container");
   startContainer.remove();
   console.log("it works");
 };
 
-// clicking start button - start-container ID should
-// - remove the container div
 // - start timer
 // - render question
 
@@ -53,7 +53,22 @@ const renderAnswers = function () {};
 // append to div
 // ADD CLICK EVENT HANDLER
 
-const verifyAnswer = function () {};
+const questionsDiv = document.getElementById("questions-container");
+
+const verifyAnswer = function (event) {
+  const currentTarget = event.currentTarget;
+  const target = event.target;
+  if (target.getAttribute("class") === "myButton") {
+    const dataMsg = target.getAttribute("data-message");
+    const dataMain = currentTarget.getAttribute("data-main");
+    if (dataMain === dataMsg) {
+      console.log("correct answer");
+    } else {
+      console.log("incorrect");
+    }
+  }
+};
+questionsDiv.addEventListener("click", verifyAnswer);
 // get data-attribute="answer" from buttons
 // get question answer from questionsObject
 // compare the two

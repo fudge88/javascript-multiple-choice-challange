@@ -98,7 +98,20 @@ const renderHighScore = function () {};
 
 const clearLocalStorage = function () {};
 
-const timer = function () {};
+let counter = 3;
+
+const counterSpan = document.getElementById("timer");
+
+const countDown = function () {
+  if (counter < 0) {
+    console.log("GAME OVER");
+    clearInterval(timer);
+  } else {
+    counterSpan.textContent = counter;
+    counter -= 1;
+  }
+};
+const timer = setInterval(countDown, 1000);
 // if timer reaches 0 render gameOver
 
 const gameOver = function () {};

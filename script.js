@@ -30,7 +30,12 @@ const questionsArray = [
 
 const currentQuestion = 0;
 
-const startQuiz = function () {};
+const startQuiz = function () {
+  const startContainer = document.getElementById("start-container");
+  startContainer.remove();
+  console.log("it works");
+};
+
 // clicking start button - start-container ID should
 // - remove the container div
 // - start timer

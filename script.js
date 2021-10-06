@@ -28,47 +28,75 @@ const questionsArray = [
   },
 ];
 
-const currentQuestion = 0;
+let currentQuestion = 0;
+const startBtn = document.getElementById("startBtn");
+const startContainer = document.getElementById("start-container");
 
 const startQuiz = function () {
   // clicking start button - start-container ID should
-  // - remove the container div
-  const startContainer = document.getElementById("start-container");
-  startContainer.remove();
+
+  startContainer.innerHTML = "";
+  renderQuestion();
   console.log("it works");
+  const timer = setInterval(countDown, 1000);
 };
+
+startBtn.addEventListener("click", startQuiz);
 
 // - start timer
 // - render question
 
-const renderQuestion = function () {};
+const renderQuestion = function () {
+  const question = document.createElement("h1");
+  question.setAttribute("class", "sm-question-font");
+  question.textContent = "hello";
+
+  const answerDiv = document.createElement("div");
+  answerDiv.setAttribute("class", "answer-btn-container");
+
+  const answerButton = document.createElement("button");
+  answerButton.setAttribute("data-message", "answer");
+  answerButton.setAttribute("class", "myButton");
+  answerButton.textContent = "hey";
+
+  answerDiv.appendChild(answerButton);
+  startContainer.appendChild(question);
+  startContainer.appendChild(answerDiv);
+};
+
+// let question = questionsArray[currentQuestion];
+// verifyAnswer();
+// currentQuestion++
 // when answer is clicked
 // -check if it is the correct answer
 // -remove question-container
 // -render new question
 
-const renderAnswers = function () {};
+const renderAnswers = function () {
+  // let answers = questionsArray[answers];
+};
 // take in list of answers
 // loop through and create buttons
 // append to div
 // ADD CLICK EVENT HANDLER
 
-const questionsDiv = document.getElementById("questions-container");
+// const questionsDiv = document.getElementById("questions-container");
 
-const verifyAnswer = function (event) {
-  const currentTarget = event.currentTarget;
-  const target = event.target;
-  if (target.getAttribute("class") === "myButton") {
-    const dataMsg = target.getAttribute("data-message");
-    const dataMain = currentTarget.getAttribute("data-main");
-    if (dataMain === dataMsg) {
-      console.log("correct answer");
-    } else {
-      console.log("incorrect");
-    }
-  }
-};
-questionsDiv.addEventListener("click", verifyAnswer);
+// const verifyAnswer = function (event) {
+//   const currentTarget = event.currentTarget;
+//   const target = event.target;
+//   if (target.getAttribute("class") === "myButton") {
+//     const dataMsg = target.getAttribute("data-message");
+//     const dataMain = currentTarget.getAttribute("data-main");
+//     if (dataMain === dataMsg) {
+//       console.log("correct answer");
+//     } else {
+//       console.log("incorrect");
+//     }
+//   }
+// };
+// questionsDiv.addEventListener("click", verifyAnswer);
+
 // get data-attribute="answer" from buttons
 // get question answer from questionsObject
 // compare the two
@@ -82,7 +110,19 @@ const renderScore = function () {};
 // append to main
 // ADD EVENT LISTENERS TO FORM
 
-const registerScore = function () {};
+const registerScore = function () {
+  const playerInitials = document.getElementById("playerInitials");
+  if (playerInitials < 5 || playerInitials > 0) {
+    alert("Please enter a no more then 5 characters");
+    const playerInitialArray = [];
+    if (!playerInitialArray) {
+      return "no high scores stored";
+    } else if (playerInitials) {
+      playerInitialArray.push(playerInitials);
+      console.log(playerInitialArray);
+    }
+  }
+};
 // take the value from INPUT-
 // submit event and register value in local storage
 // get remaining time
@@ -96,38 +136,41 @@ const renderHighScore = function () {};
 // append
 // append to parent
 
+// local storage
+// get
+// set
+// remove
+// clear
+
 const clearLocalStorage = function () {};
 
 // timer
-let counter = 3;
+let counter = 50;
 
 const counterSpan = document.getElementById("timer");
 const counterDiv = document.getElementById("counter-div");
 const mainElement = document.getElementById("main");
-// const questionsDiv = document.getElementById("questions-container");
+// const gameOverImg = "../assets/images/anime-blood.png";
 
 const gameOver = function () {
-  // counterDiv.remove();
+  counterDiv.remove();
   questionsDiv.remove();
-  const img = document.createElement("img");
-  img.setAttribute("src", "./assets/images/anime-blood.png");
-  mainElement.append(img);
+  // const img = document.createElement("img");
+  // img.setAttribute(gameOverImg);
+  // mainElement.append(gameOverImg);
 };
+// div showing game over
+// append to main
 
 // timer function
 const countDown = function () {
   if (counter < 0) {
-    console.log("GAME OVER");
     clearInterval(timer);
+    gameOver();
   } else {
     counterSpan.textContent = counter;
     counter -= 1;
   }
 };
-const timer = setInterval(countDown, 1000);
+// const timer = setInterval(countDown, 1000);
 // if timer reaches 0 render gameOver
-
-// const gameOver = function () {};
-// removes question
-// div showing game over
-// append to main

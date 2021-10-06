@@ -28,6 +28,20 @@ const questionsArray = [
   },
 ];
 
+const counterSpan = document.getElementById("timer");
+const counterDiv = document.getElementById("counter-div");
+const mainElement = document.querySelector(".main-container");
+const gameOverImg = "assets/images/anime-blood.png";
+
+const gameOver = function () {
+  // counterDiv.remove();
+  // questionsDiv.remove();
+  const img = document.createElement("img");
+  img.setAttribute("src", gameOverImg);
+  console.log(mainElement);
+  mainElement.append(img);
+};
+
 // timer
 let counter = 50;
 let currentQuestionIndex = 0;
@@ -61,7 +75,8 @@ const verifyAnswer = function (event) {
         startContainer.innerHTML = "";
         renderQuestion();
       } else {
-        // go to game over
+        gameOver();
+        return;
       }
     } else {
       counter -= 5;
@@ -94,15 +109,6 @@ const renderQuestion = function () {
   answerDiv.addEventListener("click", verifyAnswer);
 };
 
-// verifyAnswer();
-// currentQuestion++
-// when answer is clicked
-// -check if it is the correct answer
-// -remove question-container
-// -render new question
-
-// ADD CLICK EVENT HANDLER
-
 // const questionsDiv = document.getElementById("questions-container");
 
 // get data-attribute="answer" from buttons
@@ -119,7 +125,7 @@ const renderScore = function () {};
 // ADD EVENT LISTENERS TO FORM
 
 const registerScore = function () {
-  const playerInitials = document.getElementById("playerInitials");
+  const playerInitials = document.getElementById("playerInitials").value;
   if (playerInitials < 5 || playerInitials > 0) {
     alert("Please enter a no more then 5 characters");
     const playerInitialArray = [];
@@ -127,6 +133,7 @@ const registerScore = function () {
       return "no high scores stored";
     } else if (playerInitials) {
       playerInitialArray.push(playerInitials);
+      console.log(playerInitials);
       console.log(playerInitialArray);
     }
   }
@@ -152,18 +159,19 @@ const renderHighScore = function () {};
 
 const clearLocalStorage = function () {};
 
-const counterSpan = document.getElementById("timer");
-const counterDiv = document.getElementById("counter-div");
-const mainElement = document.getElementById("main");
-// const gameOverImg = "../assets/images/anime-blood.png";
+// const counterSpan = document.getElementById("timer");
+// const counterDiv = document.getElementById("counter-div");
+// const mainElement = document.getElementById("main");
+// const gameOverImg = "assets/images/anime-blood.png";
 
-const gameOver = function () {
-  counterDiv.remove();
-  questionsDiv.remove();
-  // const img = document.createElement("img");
-  // img.setAttribute(gameOverImg);
-  // mainElement.append(gameOverImg);
-};
+// const gameOver = function () {
+//   // counterDiv.remove();
+//   // questionsDiv.remove();
+//   const img = document.createElement("img");
+//   img.setAttribute("src", gameOverImg);
+
+//   mainElement.append(img);
+// };
 // div showing game over
 // append to main
 

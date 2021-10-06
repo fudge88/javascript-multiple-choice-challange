@@ -28,7 +28,7 @@ const questionsArray = [
   },
 ];
 
-let currentQuestion = 0;
+let currentQuestionIndex = 0;
 const startBtn = document.getElementById("startBtn");
 const startContainer = document.getElementById("start-container");
 
@@ -46,25 +46,45 @@ startBtn.addEventListener("click", startQuiz);
 // - start timer
 // - render question
 
+const verifyAnswer = function (event) {
+  const currentTarget = event.currentTarget;
+  const target = event.target;
+  if (target.getAttribute("class") === "myButton") {
+    const chosenAnswer = target.getAttribute("data-message");
+    const correctAnswer = questionsArray[currentQuestionIndex].correctAnswer;
+    if (chosenAnswer === correctAnswer) {
+      console.log("correct answer");
+    } else {
+      console.log("incorrect");
+    }
+  }
+};
+
 const renderQuestion = function () {
+  const currentQuestion = questionsArray[currentQuestionIndex];
+
   const question = document.createElement("h1");
   question.setAttribute("class", "sm-question-font");
-  question.textContent = "hello";
+  question.textContent = currentQuestion.questions;
 
   const answerDiv = document.createElement("div");
   answerDiv.setAttribute("class", "answer-btn-container");
 
-  const answerButton = document.createElement("button");
-  answerButton.setAttribute("data-message", "answer");
-  answerButton.setAttribute("class", "myButton");
-  answerButton.textContent = "hey";
+  const answerLoop = function (each, i, array) {
+    const answerButton = document.createElement("button");
+    answerButton.setAttribute("data-message", each);
+    answerButton.setAttribute("class", "myButton");
+    answerButton.textContent = each;
+    answerDiv.appendChild(answerButton);
+  };
 
-  answerDiv.appendChild(answerButton);
+  currentQuestion.answers.forEach(answerLoop);
+
   startContainer.appendChild(question);
   startContainer.appendChild(answerDiv);
+  answerDiv.addEventListener("click", verifyAnswer);
 };
 
-// let question = questionsArray[currentQuestion];
 // verifyAnswer();
 // currentQuestion++
 // when answer is clicked
@@ -72,30 +92,9 @@ const renderQuestion = function () {
 // -remove question-container
 // -render new question
 
-const renderAnswers = function () {
-  // let answers = questionsArray[answers];
-};
-// take in list of answers
-// loop through and create buttons
-// append to div
 // ADD CLICK EVENT HANDLER
 
 // const questionsDiv = document.getElementById("questions-container");
-
-// const verifyAnswer = function (event) {
-//   const currentTarget = event.currentTarget;
-//   const target = event.target;
-//   if (target.getAttribute("class") === "myButton") {
-//     const dataMsg = target.getAttribute("data-message");
-//     const dataMain = currentTarget.getAttribute("data-main");
-//     if (dataMain === dataMsg) {
-//       console.log("correct answer");
-//     } else {
-//       console.log("incorrect");
-//     }
-//   }
-// };
-// questionsDiv.addEventListener("click", verifyAnswer);
 
 // get data-attribute="answer" from buttons
 // get question answer from questionsObject

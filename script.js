@@ -28,6 +28,8 @@ const questionsArray = [
   },
 ];
 
+// timer
+let counter = 50;
 let currentQuestionIndex = 0;
 const startBtn = document.getElementById("startBtn");
 const startContainer = document.getElementById("start-container");
@@ -53,9 +55,16 @@ const verifyAnswer = function (event) {
     const chosenAnswer = target.getAttribute("data-message");
     const correctAnswer = questionsArray[currentQuestionIndex].correctAnswer;
     if (chosenAnswer === correctAnswer) {
-      console.log("correct answer");
+      // move onto next question
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questionsArray.length - 1) {
+        startContainer.innerHTML = "";
+        renderQuestion();
+      } else {
+        // go to game over
+      }
     } else {
-      console.log("incorrect");
+      counter -= 5;
     }
   }
 };
@@ -142,9 +151,6 @@ const renderHighScore = function () {};
 // clear
 
 const clearLocalStorage = function () {};
-
-// timer
-let counter = 50;
 
 const counterSpan = document.getElementById("timer");
 const counterDiv = document.getElementById("counter-div");

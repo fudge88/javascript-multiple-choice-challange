@@ -151,6 +151,8 @@ const renderScore = function () {};
 
 const registerScore = function () {
   const playerInitials = document.getElementById("playerInitials").value;
+  const playerScore = count(counter);
+  console.log(playerScore);
   if (playerInitials < 5 || playerInitials > 0) {
     alert("Please enter a no more then 5 characters");
     const playerInitialArray = [];
@@ -222,7 +224,7 @@ const startTimer = function () {
   const countDown = function () {
     if (counter < 0 || currentQuestionIndex > questionsArray.length - 1) {
       clearInterval(timer);
-      // gameOver();
+      gameOver();
     } else {
       counterSpan.textContent = counter;
       counter -= 1;

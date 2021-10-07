@@ -36,10 +36,13 @@ const gameOverImg = "assets/images/anime-blood.png";
 const gameOver = function () {
   // counterDiv.remove();
   // questionsDiv.remove();
+  startContainer.remove();
   const img = document.createElement("img");
   img.setAttribute("src", gameOverImg);
-  console.log(mainElement);
   mainElement.append(img);
+  setTimeout(function () {
+    renderRegisterScore();
+  }, 3000);
   return;
 };
 
@@ -48,9 +51,6 @@ let counter = 50;
 let currentQuestionIndex = 0;
 const startBtn = document.getElementById("startBtn");
 const startContainer = document.getElementById("start-container");
-
-// - start timer
-// - render question
 
 const renderRegisterScore = function () {
   const initialBtn = document.createElement("button");
@@ -100,18 +100,10 @@ const verifyAnswer = function (event) {
       if (currentQuestionIndex < questionsArray.length) {
         startContainer.innerHTML = "";
         renderQuestion();
-      } else {
-        startContainer.remove();
-        gameOver();
-        startContainer.innerHTML = "";
-        renderRegisterScore();
-        return;
       }
     } else if (counter === 0) {
-      startContainer.remove();
       gameOver();
-      renderRegisterScore();
-      return;
+      // return;
     } else {
       counter -= 5;
     }

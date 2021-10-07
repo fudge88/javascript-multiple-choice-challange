@@ -40,6 +40,7 @@ const gameOver = function () {
   img.setAttribute("src", gameOverImg);
   console.log(mainElement);
   mainElement.append(img);
+  return;
 };
 
 // timer
@@ -48,36 +49,69 @@ let currentQuestionIndex = 0;
 const startBtn = document.getElementById("startBtn");
 const startContainer = document.getElementById("start-container");
 
-const startQuiz = function () {
-  // clicking start button - start-container ID should
-
-  startContainer.innerHTML = "";
-  renderQuestion();
-  console.log("it works");
-  const timer = setInterval(countDown, 1000);
-};
-
-startBtn.addEventListener("click", startQuiz);
-
 // - start timer
 // - render question
 
+const renderRegisterScore = function () {
+  const initialBtn = document.createElement("button");
+  initialBtn.setAttribute("type", "submit");
+  initialBtn.setAttribute("value", "Submit");
+
+  const initialInput = document.createElement("input");
+  initialInput.setAttribute("type", "text");
+  initialInput.setAttribute("id", "playerInitials");
+  initialInput.setAttribute("placeholder", "Initial here to save score");
+
+  const scoreForm = document.createElement("form");
+  scoreForm.setAttribute("method", "post");
+  scoreForm.setAttribute("action", "#");
+
+  const scoreSpan = document.createElement("span");
+  scoreSpan.textContent = "0";
+
+  const yourScore = document.createElement("p");
+  yourScore.textContent = "You Scored: ";
+
+  const scoreInputHeading = document.createElement("h1");
+  scoreInputHeading.textContent = "Challenge Complete!";
+
+  const scoreDiv = document.createElement("div");
+  scoreDiv.setAttribute("class", "start-container");
+  scoreDiv.setAttribute("id", "score-container");
+
+  yourScore.appendChild(scoreSpan);
+  scoreForm.appendChild(initialInput);
+  scoreForm.appendChild(initialBtn);
+
+  scoreDiv.appendChild(scoreInputHeading);
+  scoreDiv.appendChild(yourScore);
+  scoreDiv.appendChild(scoreForm);
+
+  mainElement.appendChild(scoreDiv);
+};
+
 const verifyAnswer = function (event) {
-  const currentTarget = event.currentTarget;
   const target = event.target;
   if (target.getAttribute("class") === "myButton") {
     const chosenAnswer = target.getAttribute("data-message");
     const correctAnswer = questionsArray[currentQuestionIndex].correctAnswer;
     if (chosenAnswer === correctAnswer) {
-      // move onto next question
       currentQuestionIndex++;
-      if (currentQuestionIndex < questionsArray.length - 1) {
+      if (currentQuestionIndex < questionsArray.length) {
         startContainer.innerHTML = "";
         renderQuestion();
       } else {
+        startContainer.remove();
         gameOver();
+        startContainer.innerHTML = "";
+        renderRegisterScore();
         return;
       }
+    } else if (counter === 0) {
+      startContainer.remove();
+      gameOver();
+      renderRegisterScore();
+      return;
     } else {
       counter -= 5;
     }
@@ -108,15 +142,6 @@ const renderQuestion = function () {
   startContainer.appendChild(answerDiv);
   answerDiv.addEventListener("click", verifyAnswer);
 };
-
-// const questionsDiv = document.getElementById("questions-container");
-
-// get data-attribute="answer" from buttons
-// get question answer from questionsObject
-// compare the two
-// if != deduct 5 seconds
-// then render next question - if index is <= questions.length i++ o if not renderScore()
-// prep event- event bubbling
 
 const renderScore = function () {};
 // remove last question to render score div
@@ -156,8 +181,21 @@ const renderHighScore = function () {};
 // set
 // remove
 // clear
+const nameInitial = "fa";
+const inputField = document.getElementById("playerInitials");
 
-const clearLocalStorage = function () {};
+const localStorage = function () {
+  const infoLS = localStorage.getItem("initialScore");
+  if (!infoLS) {
+    const message = [nameInitial];
+    localStorage.setItem("initialScore", JSON.stringify(initialScore));
+  } else {
+    const myArray = JSON.parse(infoLS);
+    myArray.push(nameInitial);
+    localStorage.setItem("initialScore", JSON.stringify(myArray));
+  }
+};
+// inputField.addEventListener("click", localStorage);
 
 // const counterSpan = document.getElementById("timer");
 // const counterDiv = document.getElementById("counter-div");
@@ -176,14 +214,29 @@ const clearLocalStorage = function () {};
 // append to main
 
 // timer function
-const countDown = function () {
-  if (counter < 0) {
-    clearInterval(timer);
-    gameOver();
-  } else {
-    counterSpan.textContent = counter;
-    counter -= 1;
-  }
-};
+
 // const timer = setInterval(countDown, 1000);
 // if timer reaches 0 render gameOver
+
+const startTimer = function () {
+  const countDown = function () {
+    if (counter < 0 || currentQuestionIndex > questionsArray.length - 1) {
+      clearInterval(timer);
+      // gameOver();
+    } else {
+      counterSpan.textContent = counter;
+      counter -= 1;
+    }
+  };
+  const timer = setInterval(countDown, 1000);
+};
+
+const startQuiz = function () {
+  // clicking start button - start-container ID should
+  startContainer.innerHTML = "";
+  renderQuestion();
+  startTimer();
+  console.log("it works");
+  // const timer = setInterval(countDown, 1000);
+};
+startBtn.addEventListener("click", startQuiz);

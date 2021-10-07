@@ -31,15 +31,30 @@ const questionsArray = [
 const counterSpan = document.getElementById("timer");
 const counterDiv = document.getElementById("counter-div");
 const mainElement = document.querySelector(".main-container");
-const gameOverImg = "assets/images/anime-blood.png";
+const gameOverImg2 = "assets/images/anime-blood.png";
+const gameOverImg1 = "assets/images/anime-gun.png";
 
 const gameOver = function () {
   // counterDiv.remove();
   // questionsDiv.remove();
   startContainer.remove();
-  const img = document.createElement("img");
-  img.setAttribute("src", gameOverImg);
-  mainElement.append(img);
+
+  const gunDiv = document.createElement("div");
+  gunDiv.setAttribute("class", "gunDiv");
+  mainElement.append(gunDiv);
+
+  const imgGun = document.createElement("img");
+  imgGun.setAttribute("src", gameOverImg1);
+  imgGun.setAttribute("class", "gameOverGun");
+  gunDiv.append(imgGun);
+  setTimeout(function () {
+    renderRegisterScore();
+  }, 3000);
+
+  const imgBlood = document.createElement("img");
+  imgBlood.setAttribute("src", gameOverImg2);
+  imgBlood.setAttribute("class", "gameOverImg");
+  mainElement.append(imgBlood);
   setTimeout(function () {
     renderRegisterScore();
   }, 3000);

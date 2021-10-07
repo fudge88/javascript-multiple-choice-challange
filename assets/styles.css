@@ -98,6 +98,28 @@ header a {
   margin: 5px;
 }
 
+.gunDiv {
+  height: 100%;
+  min-width: 100%;
+  overflow: hidden;
+}
+.gameOverGun {
+  /* height: 60rem; */
+  animation: 10s slide-up;
+  margin-top: 0%;
+  /* position: absolute;
+  bottom: -90%;
+  left: 0%;
+  animation: movingAnime 3s slide-up;
+  animation-delay: 0;
+  animation-iteration-count: 1;
+  animation-direction: alternate; */
+}
+
+.gameOverImg {
+  width: 100%;
+}
+
 form {
   display: flex;
   flex-direction: row;
@@ -126,5 +148,16 @@ input:focus {
   .sm-question-font {
     font-size: 2.5rem;
     margin-top: 0;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    margin-top: 100%;
+    height: 300%;
+  }
+  to {
+    margin-top: 0%;
+    height: 100%;
   }
 }

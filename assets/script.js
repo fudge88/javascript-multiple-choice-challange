@@ -47,17 +47,29 @@ const gameOver = function () {
   imgGun.setAttribute("src", gameOverImg1);
   imgGun.setAttribute("class", "gameOverGun");
   gunDiv.append(imgGun);
+  // gun image and delayed remove
+  setTimeout(function () {
+    gunDiv.remove();
+  }, 3500);
+  // delayed blood image and remove
+  // setTimeout(function () {
+  //   gunDiv.remove();
+  // }, 3500);
+  // delayed render score
   setTimeout(function () {
     renderRegisterScore();
-  }, 3000);
+  }, 4000);
 
   const imgBlood = document.createElement("img");
   imgBlood.setAttribute("src", gameOverImg2);
   imgBlood.setAttribute("class", "gameOverImg");
-  mainElement.append(imgBlood);
+  // mainElement.append(imgBlood);
   setTimeout(function () {
-    renderRegisterScore();
-  }, 3000);
+    mainElement.append(imgBlood);
+  }, 1500);
+  setTimeout(function () {
+    imgBlood.remove();
+  }, 4000);
   return;
 };
 

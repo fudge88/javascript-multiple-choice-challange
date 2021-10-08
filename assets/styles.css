@@ -111,7 +111,7 @@ header a {
   /* left: -10rem; */
 }
 .gameOverImg {
-  z-index: 1000;
+  z-index: 500;
 }
 
 .gameOverImg {
@@ -137,6 +137,7 @@ input:focus {
 
 .input-btn {
   border-radius: 0px 10px 10px 0px;
+  color: white;
 }
 
 @media (max-width: 767.98px) {

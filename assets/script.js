@@ -81,8 +81,10 @@ const startContainer = document.getElementById("start-container");
 
 const renderRegisterScore = function () {
   const initialBtn = document.createElement("button");
+  initialBtn.setAttribute("class", "input-btn");
   initialBtn.setAttribute("type", "submit");
   initialBtn.setAttribute("value", "Submit");
+  initialBtn.textContent = "Save";
 
   const initialInput = document.createElement("input");
   initialInput.setAttribute("type", "text");

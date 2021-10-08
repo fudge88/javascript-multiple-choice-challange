@@ -56,9 +56,8 @@ const gameOver = function () {
   //   gunDiv.remove();
   // }, 3500);
   // delayed render score
-  setTimeout(function () {
-    renderRegisterScore();
-  }, 4000);
+
+  // redirect to start
 
   const imgBlood = document.createElement("img");
   imgBlood.setAttribute("src", gameOverImg2);
@@ -92,8 +91,6 @@ const renderRegisterScore = function () {
   initialInput.setAttribute("placeholder", "Initial here to save score");
 
   const scoreForm = document.createElement("form");
-  scoreForm.setAttribute("method", "post");
-  scoreForm.setAttribute("action", "#");
 
   const scoreSpan = document.createElement("span");
   scoreSpan.textContent = "0";
@@ -114,6 +111,7 @@ const renderRegisterScore = function () {
 
   scoreDiv.appendChild(scoreInputHeading);
   scoreDiv.appendChild(yourScore);
+  scoreForm.addEventListener("submit", registerScore);
   scoreDiv.appendChild(scoreForm);
 
   mainElement.appendChild(scoreDiv);
@@ -124,17 +122,15 @@ const verifyAnswer = function (event) {
   if (target.getAttribute("class") === "myButton") {
     const chosenAnswer = target.getAttribute("data-message");
     const correctAnswer = questionsArray[currentQuestionIndex].correctAnswer;
-    if (chosenAnswer === correctAnswer) {
-      currentQuestionIndex++;
-      if (currentQuestionIndex < questionsArray.length) {
-        startContainer.innerHTML = "";
-        renderQuestion();
-      }
-    } else if (counter === 0) {
-      gameOver();
-      // return;
-    } else {
+    if (chosenAnswer !== correctAnswer) {
       counter -= 5;
+    }
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questionsArray.length) {
+      startContainer.innerHTML = "";
+      renderQuestion();
+    } else {
+      renderRegisterScore();
     }
   }
 };
@@ -170,21 +166,17 @@ const renderScore = function () {};
 // append to main
 // ADD EVENT LISTENERS TO FORM
 
-const registerScore = function () {
+const registerScore = function (event) {
+  console.log(event);
+  event.preventDefault();
   const playerInitials = document.getElementById("playerInitials").value;
-  const playerScore = count(counter);
-  console.log(playerScore);
-  if (playerInitials < 5 || playerInitials > 0) {
-    alert("Please enter a no more then 5 characters");
-    const playerInitialArray = [];
-    if (!playerInitialArray) {
-      return "no high scores stored";
-    } else if (playerInitials) {
-      playerInitialArray.push(playerInitials);
-      console.log(playerInitials);
-      console.log(playerInitialArray);
-    }
-  }
+  const playerScore = counter;
+  console.log(playerInitials, playerScore);
+  const data = {
+    initials: playerInitials,
+    score: playerScore,
+  };
+  scoreStorage(data);
 };
 // take the value from INPUT-
 // submit event and register value in local storage
@@ -207,16 +199,10 @@ const renderHighScore = function () {};
 const nameInitial = "fa";
 const inputField = document.getElementById("playerInitials");
 
-const localStorage = function () {
-  const infoLS = localStorage.getItem("initialScore");
-  if (!infoLS) {
-    const message = [nameInitial];
-    localStorage.setItem("initialScore", JSON.stringify(initialScore));
-  } else {
-    const myArray = JSON.parse(infoLS);
-    myArray.push(nameInitial);
-    localStorage.setItem("initialScore", JSON.stringify(myArray));
-  }
+const scoreStorage = function (data) {
+  const highScores = JSON.parse(localStorage.getItem("initialScore")) || [];
+  highScores.push(data);
+  localStorage.setItem("initialScore", JSON.stringify(highScores));
 };
 // inputField.addEventListener("click", localStorage);
 
@@ -251,6 +237,7 @@ const startTimer = function () {
       counter -= 1;
     }
   };
+
   const timer = setInterval(countDown, 1000);
 };
 

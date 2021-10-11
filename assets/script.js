@@ -118,13 +118,52 @@ const renderRegisterScore = function () {
   mainElement.appendChild(scoreDiv);
 };
 
+const constructWrongAlert = function () {
+  const wrongAnswer = document.createElement("div");
+  wrongAnswer.setAttribute("class", "alert wrong-answer");
+  wrongAnswer.textContent = "WRONG ANSWER! You lose 5 seconds";
+
+  return wrongAnswer;
+};
+
+const constructRightAlert = function () {
+  const rightAnswer = document.createElement("div");
+  rightAnswer.setAttribute("class", "alert right-answer");
+  rightAnswer.textContent = "WELL DONE! You have answered correctly";
+
+  return rightAnswer;
+};
+
+const renderWrongAlert = function () {
+  const alert = constructWrongAlert();
+  mainElement.appendChild(alert);
+  const afterDelay = function () {
+    alert.remove();
+    clearTimeout(delay);
+  };
+  const delay = setTimeout(afterDelay, 1000);
+};
+
+const renderRightAlert = function () {
+  const alert = constructRightAlert();
+  mainElement.appendChild(alert);
+  const afterDelay = function () {
+    alert.remove();
+    clearTimeout(delay);
+  };
+  const delay = setTimeout(afterDelay, 1000);
+};
+
 const verifyAnswer = function (event) {
   const target = event.target;
   if (target.getAttribute("class") === "myButton") {
     const chosenAnswer = target.getAttribute("data-message");
     const correctAnswer = questionsArray[currentQuestionIndex].correctAnswer;
     if (chosenAnswer !== correctAnswer) {
+      renderWrongAlert();
       counter -= 5;
+    } else {
+      renderRightAlert();
     }
     currentQuestionIndex++;
     if (currentQuestionIndex < questionsArray.length) {

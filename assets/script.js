@@ -35,8 +35,6 @@ const gameOverImg2 = "assets/images/anime-blood.png";
 const gameOverImg1 = "assets/images/anime-gun.png";
 
 const gameOver = function () {
-  // counterDiv.remove();
-  // questionsDiv.remove();
   startContainer.remove();
 
   const gunDiv = document.createElement("div");
@@ -51,13 +49,6 @@ const gameOver = function () {
   setTimeout(function () {
     gunDiv.remove();
   }, 3500);
-  // delayed blood image and remove
-  // setTimeout(function () {
-  //   gunDiv.remove();
-  // }, 3500);
-  // delayed render score
-
-  // redirect to start
 
   const imgBlood = document.createElement("img");
   imgBlood.setAttribute("src", gameOverImg2);
@@ -66,10 +57,18 @@ const gameOver = function () {
   setTimeout(function () {
     mainElement.append(imgBlood);
   }, 1500);
+
+  const gameOverWording = document.createElement("h1");
+  gameOverWording.setAttribute("class", "gameOverWording");
+  gameOverWording.textContent = "GAME OVER";
+  setTimeout(function () {
+    mainElement.append(gameOverWording);
+  }, 1700);
+
   setTimeout(function () {
     imgBlood.remove();
+    gameOverWording.remove();
   }, 4000);
-  return;
 };
 
 // timer
@@ -129,8 +128,10 @@ const verifyAnswer = function (event) {
     if (currentQuestionIndex < questionsArray.length) {
       startContainer.innerHTML = "";
       renderQuestion();
+      console.log("next question");
     } else {
-      renderRegisterScore();
+      // renderRegisterScore(); register score does not appear
+      console.log("register score");
     }
   }
 };
@@ -191,7 +192,7 @@ const renderHighScore = function () {};
 // set
 // remove
 // clear
-const nameInitial = "fa";
+
 const inputField = document.getElementById("playerInitials");
 
 const scoreStorage = function (data) {
@@ -220,6 +221,5 @@ const startQuiz = function () {
   renderQuestion();
   startTimer();
   console.log("it works");
-  // const timer = setInterval(countDown, 1000);
 };
 startBtn.addEventListener("click", startQuiz);

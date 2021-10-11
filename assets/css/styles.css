@@ -190,12 +190,12 @@ input:focus {
   }
 
   50% {
-    bottom: 00%;
+    bottom: 0%;
     left: 0%;
   }
 
   100% {
-    bottom: -50%;
+    bottom: -80%;
     left: 0%;
   }
 }

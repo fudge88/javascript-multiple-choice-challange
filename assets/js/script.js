@@ -1,30 +1,35 @@
-console.log(document.body.children);
-
 const questionsArray = [
   {
-    questions: "question 1",
-    answers: ["Q1Answer1", "Q1Answer2", "Q1Answer3", "Q1Answer4"],
-    correctAnswer: "Q1Answer1",
+    questions: "Pablo Escobar began his criminal career as",
+    answers: [
+      "Gambling and prostitution ringleader",
+      "Emerald and arms dealer",
+      "Political corruptor",
+      "Tomb and car thief",
+    ],
+    correctAnswer: "Tomb and car thief",
   },
   {
-    questions: "question 2",
-    answers: ["Q2Answer1", "Q2Answer2", "Q2Answer3", "Q2Answer4"],
-    correctAnswer: "Q2Answer2",
+    questions:
+      "What was Pablo Escobar doing when the Colombian police commandos surrounded and killed him",
+    answers: [
+      "Having a secret meeting with DEA covered agents",
+      "Counting his money",
+      "Talking by phone with his son",
+      "Cleaning his guns",
+    ],
+    correctAnswer: "Talking by phone with his son",
   },
   {
-    questions: "question 3",
-    answers: ["Q3Answer1", "Q3Answer2", "Q3Answer3", "Q3Answer4"],
-    correctAnswer: "Q3Answer3",
+    questions: "Give the nickname of the famous criminal Joaquin Guzman",
+    answers: ["Baby Face", "Tony Montana", "Escobar", "El Chapo"],
+    correctAnswer: "El Chapo",
   },
   {
-    questions: "question 4",
-    answers: ["Q4Answer1", "Q4Answer2", "Q4Answer3", "Q4Answer4"],
-    correctAnswer: "Q4Answer4",
-  },
-  {
-    questions: "question 5",
-    answers: ["Q5Answer1", "Q5Answer2", "Q5Answer3", "Q5Answer4"],
-    correctAnswer: "Q5Answer1",
+    questions:
+      "One of the closest partners of Escobar was Gonzalo Rodriguez Gacha. What was Rodriguez's nickname?",
+    answers: ["El Mexicano", "Pinina", "El Sicario", "Popeye"],
+    correctAnswer: "El Mexicano",
   },
 ];
 
@@ -47,7 +52,7 @@ const gameOver = function () {
   gunDiv.append(imgGun);
   setTimeout(function () {
     gunDiv.remove();
-  }, 3500);
+  }, 3800);
 
   const imgBlood = document.createElement("img");
   imgBlood.setAttribute("src", gameOverImg2);
@@ -74,7 +79,7 @@ const gameOver = function () {
 };
 
 // timer
-let counter = 10;
+let counter = 40;
 let currentQuestionIndex = 0;
 const startBtn = document.getElementById("startBtn");
 const startContainer = document.getElementById("start-container");
@@ -160,17 +165,23 @@ const verifyAnswer = function (event) {
     const chosenAnswer = target.getAttribute("data-message");
     const correctAnswer = questionsArray[currentQuestionIndex].correctAnswer;
     if (chosenAnswer !== correctAnswer) {
-      renderWrongAlert();
       counter -= 5;
+      renderWrongAlert();
     } else {
       renderRightAlert();
     }
     currentQuestionIndex++;
+
     if (currentQuestionIndex < questionsArray.length) {
       startContainer.innerHTML = "";
       renderQuestion();
       console.log("next question");
     } else {
+      if (count > 0) {
+        renderQuestion();
+      } else {
+        gameOver();
+      }
       // renderRegisterScore(); register score does not appear
       console.log("register score");
     }
@@ -256,7 +267,6 @@ const startTimer = function () {
 };
 
 const startQuiz = function () {
-  // clicking start button - start-container ID should
   startContainer.innerHTML = "";
   renderQuestion();
   startTimer();

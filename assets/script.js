@@ -45,7 +45,6 @@ const gameOver = function () {
   imgGun.setAttribute("src", gameOverImg1);
   imgGun.setAttribute("class", "gameOverGun");
   gunDiv.append(imgGun);
-  // gun image and delayed remove
   setTimeout(function () {
     gunDiv.remove();
   }, 3500);
@@ -53,7 +52,6 @@ const gameOver = function () {
   const imgBlood = document.createElement("img");
   imgBlood.setAttribute("src", gameOverImg2);
   imgBlood.setAttribute("class", "gameOverImg");
-  // mainElement.append(imgBlood);
   setTimeout(function () {
     mainElement.append(imgBlood);
   }, 1500);
@@ -69,10 +67,14 @@ const gameOver = function () {
     imgBlood.remove();
     gameOverWording.remove();
   }, 4000);
+
+  setTimeout(function () {
+    renderRegisterScore();
+  }, 4000);
 };
 
 // timer
-let counter = 50;
+let counter = 10;
 let currentQuestionIndex = 0;
 const startBtn = document.getElementById("startBtn");
 const startContainer = document.getElementById("start-container");
@@ -168,7 +170,6 @@ const renderScore = function () {};
 // ADD EVENT LISTENERS TO FORM
 
 const registerScore = function (event) {
-  console.log(event);
   event.preventDefault();
   const playerInitials = document.getElementById("playerInitials").value;
   const playerScore = counter;
@@ -203,12 +204,12 @@ const scoreStorage = function (data) {
 
 const startTimer = function () {
   const countDown = function () {
-    if (counter < 0 || currentQuestionIndex > questionsArray.length - 1) {
+    if (counter <= 0 || currentQuestionIndex > questionsArray.length - 1) {
       clearInterval(timer);
       gameOver();
     } else {
-      counterSpan.textContent = counter;
       counter -= 1;
+      counterSpan.textContent = counter;
     }
   };
 

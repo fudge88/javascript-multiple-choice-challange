@@ -93,7 +93,7 @@ const renderRegisterScore = function () {
   const scoreForm = document.createElement("form");
 
   const scoreSpan = document.createElement("span");
-  scoreSpan.textContent = "0";
+  scoreSpan.textContent = counter;
 
   const yourScore = document.createElement("p");
   yourScore.textContent = "You Scored: ";
@@ -178,11 +178,6 @@ const registerScore = function (event) {
   };
   scoreStorage(data);
 };
-// take the value from INPUT-
-// submit event and register value in local storage
-// get remaining time
-// construct{initials: "sb", score: 22}
-// store object in local storage
 
 const renderHighScore = function () {};
 // get high scores from local storage
@@ -204,28 +199,6 @@ const scoreStorage = function (data) {
   highScores.push(data);
   localStorage.setItem("initialScore", JSON.stringify(highScores));
 };
-// inputField.addEventListener("click", localStorage);
-
-// const counterSpan = document.getElementById("timer");
-// const counterDiv = document.getElementById("counter-div");
-// const mainElement = document.getElementById("main");
-// const gameOverImg = "assets/images/anime-blood.png";
-
-// const gameOver = function () {
-//   // counterDiv.remove();
-//   // questionsDiv.remove();
-//   const img = document.createElement("img");
-//   img.setAttribute("src", gameOverImg);
-
-//   mainElement.append(img);
-// };
-// div showing game over
-// append to main
-
-// timer function
-
-// const timer = setInterval(countDown, 1000);
-// if timer reaches 0 render gameOver
 
 const startTimer = function () {
   const countDown = function () {

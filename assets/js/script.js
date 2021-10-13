@@ -40,11 +40,15 @@ const gameOverImg2 = "assets/images/anime-blood.png";
 const gameOverImg1 = "assets/images/anime-gun.png";
 
 const gameOver = function () {
-  startContainer.remove();
+  setTimeout(function () {
+    startContainer.remove();
+  }, 600);
 
   const gunDiv = document.createElement("div");
   gunDiv.setAttribute("class", "gunDiv");
-  mainElement.append(gunDiv);
+  setTimeout(function () {
+    mainElement.append(gunDiv);
+  }, 800);
 
   const imgGun = document.createElement("img");
   imgGun.setAttribute("src", gameOverImg1);

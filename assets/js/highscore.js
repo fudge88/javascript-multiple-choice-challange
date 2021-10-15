@@ -1,17 +1,11 @@
-const scoreStorage = function (data) {
-  const highScores = JSON.parse(localStorage.getItem(data));
-  localStorage.setItem("initialScore", JSON.stringify(highScores));
-};
+const highScores = JSON.parse(localStorage.getItem("initialScore")) || [];
 
 const onLoad = function () {
-  const highScoresData = highScores("initialScore", []);
-  console.log(scoreStorage.key);
+  renderScore();
 };
 
-// window.addEventListener("load", onLoad);
-
 const renderScore = function () {
-  const startContainer = document.getElementById("start-container");
+  const mainContainer = document.getElementById("main-container");
 
   const scoreHeading = document.createElement("h1");
   scoreHeading.setAttribute("class", "question-font");
@@ -22,17 +16,13 @@ const renderScore = function () {
 
   const scoreLoop = function (each, i, array) {
     const scoreList = document.createElement("li");
-    scoreList.setAttribute("data-message", each);
     scoreList.setAttribute("class", "myButton");
-    scoreList.textContent = each;
-    startContainer.appendChild(scoreList);
+    scoreList.textContent = each.initials + "," + each.score;
+    scoreDiv.appendChild(scoreList);
   };
+  highScores.forEach(scoreLoop);
 
-  localStorage.initialScore.forEach(scoreLoop);
-
-  startContainer.append(scoreHeading, scoreDiv);
-  scoreDiv.appendChild(scoreList);
-  // answerDiv.addEventListener("click", verifyAnswer);
+  mainContainer.append(scoreHeading, scoreDiv);
 };
 
 window.addEventListener("load", onLoad);

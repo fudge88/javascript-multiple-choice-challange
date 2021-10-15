@@ -227,12 +227,12 @@ const registerScore = function (event) {
   event.preventDefault();
   const playerInitials = document.getElementById("playerInitials").value;
   const playerScore = counter;
-  console.log(playerInitials, playerScore);
   const data = {
     initials: playerInitials,
     score: playerScore,
   };
   scoreStorage(data);
+  window.location.href = "./highScores.html";
 };
 
 const renderHighScore = function () {};

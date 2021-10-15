@@ -40,7 +40,7 @@ header a {
 
 .background-img {
   height: 100%;
-  background-image: url(../assets/images/anime.jpg);
+  background-image: url(../images/anime.jpg);
   background-position: center;
   background-size: cover;
   position: relative;

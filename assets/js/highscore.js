@@ -7,10 +7,10 @@ const onLoad = function () {
   renderScore();
 };
 
-// redirect function
-const redirectToPlay = function () {
-  window.location.href = "./index.html";
-};
+// // redirect function
+// const redirectToPlay = function () {
+//   window.location.href = "./index.html";
+// };
 
 // construct render score function
 const renderScore = function () {
@@ -43,7 +43,7 @@ const renderScore = function () {
 
   startContainer.append(scoreHeading, scoreDiv, playAgainBtn);
   mainContainer.append(startContainer);
-  playAgainBtn.addEventListener("click", redirectToPlay);
+  // playAgainBtn.addEventListener("click", redirectToPlay);
 };
 
 window.addEventListener("load", onLoad);

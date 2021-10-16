@@ -2,7 +2,7 @@ const questionsArray = [
   {
     questions: "Pablo Escobar began his criminal career as",
     answers: [
-      "Gambling and prostitution ringleader",
+      "Gambling and trafficking ringleader",
       "Emerald and arms dealer",
       "Political corruptor",
       "Tomb and car thief",
@@ -179,15 +179,12 @@ const verifyAnswer = function (event) {
     if (currentQuestionIndex < questionsArray.length) {
       startContainer.innerHTML = "";
       renderQuestion();
-      console.log("next question");
     } else {
       if (count > 0) {
         renderQuestion();
       } else {
         gameOver();
       }
-      // renderRegisterScore(); register score does not appear
-      console.log("register score");
     }
   }
 };
@@ -217,12 +214,6 @@ const renderQuestion = function () {
   answerDiv.addEventListener("click", verifyAnswer);
 };
 
-const renderScore = function () {};
-// remove last question to render score div
-// build score container
-// append to main
-// ADD EVENT LISTENERS TO FORM
-
 const registerScore = function (event) {
   event.preventDefault();
   const playerInitials = document.getElementById("playerInitials").value;
@@ -234,19 +225,6 @@ const registerScore = function (event) {
   scoreStorage(data);
   window.location.href = "./highScores.html";
 };
-
-const renderHighScore = function () {};
-// get high scores from local storage
-// parse data "string" -> [array]
-// loop over high scores- for each i++ build a div with initial and scores
-// append
-// append to parent
-
-// local storage
-// get
-// set
-// remove
-// clear
 
 const inputField = document.getElementById("playerInitials");
 
@@ -274,6 +252,5 @@ const startQuiz = function () {
   startContainer.innerHTML = "";
   renderQuestion();
   startTimer();
-  console.log("it works");
 };
 startBtn.addEventListener("click", startQuiz);

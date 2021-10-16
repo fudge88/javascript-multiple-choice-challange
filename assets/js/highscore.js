@@ -1,14 +1,21 @@
 const highScores = JSON.parse(localStorage.getItem("initialScore")) || [];
+const playAgainBtn = document.querySelector(".play-again-btn");
 
 const onLoad = function () {
   renderScore();
+};
+const redirectToPlay = function () {
+  window.location.href = "./index.html";
 };
 
 const renderScore = function () {
   const mainContainer = document.getElementById("main-container");
 
+  const startContainer = document.createElement("div");
+  startContainer.setAttribute("class", "start-container");
+
   const scoreHeading = document.createElement("h1");
-  scoreHeading.setAttribute("class", "question-font");
+  scoreHeading.setAttribute("class", "question-font scores-titles");
   scoreHeading.textContent = "Scores Table: ";
 
   const scoreDiv = document.createElement("ul");
@@ -16,13 +23,22 @@ const renderScore = function () {
 
   const scoreLoop = function (each, i, array) {
     const scoreList = document.createElement("li");
-    scoreList.setAttribute("class", "myButton");
-    scoreList.textContent = each.initials + "," + each.score;
+    scoreList.setAttribute("class", "myButton score-list");
+    scoreList.textContent = each.initials + "  -  " + each.score;
     scoreDiv.appendChild(scoreList);
   };
+
   highScores.forEach(scoreLoop);
 
-  mainContainer.append(scoreHeading, scoreDiv);
+  const playAgainBtn = document.createElement("button");
+  playAgainBtn.setAttribute("class", "play-again-btn");
+  // playAgainBtn.setAttribute("type", "submit");
+  // playAgainBtn.setAttribute("value", "Submit");
+  playAgainBtn.textContent = "Play again";
+
+  startContainer.append(scoreHeading, scoreDiv, playAgainBtn);
+  mainContainer.append(startContainer);
+  playAgainBtn.addEventListener("click", redirectToPlay);
 };
 
 window.addEventListener("load", onLoad);

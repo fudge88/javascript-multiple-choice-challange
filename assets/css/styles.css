@@ -79,7 +79,6 @@ header a {
   font-family: "Bangers", cursive;
   letter-spacing: 2px;
   font-size: 15px;
-
   padding: 6px 24px;
   text-decoration: none;
 }
@@ -98,10 +97,42 @@ header a {
 .answer-btn-container {
   display: flex;
   flex-direction: column;
+  list-style: none;
 }
 
+h1.scores-titles {
+  margin-bottom: 4rem;
+}
+
+ul.answer-btn-container {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 .answer-btn-container button {
   margin: 5px;
+}
+
+.score-list {
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  cursor: default;
+}
+
+.play-again-btn {
+  background: linear-gradient(to bottom, #fe5d00 5%, #ce5d00 100%);
+  background-color: #fe6600;
+  border-radius: 20px;
+  border: 1px solid #d85826;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: "Bangers", cursive;
+  letter-spacing: 2px;
+  font-size: 15px;
+  margin-top: 3rem;
+  padding: 6px 24px;
+  text-decoration: none;
 }
 
 .gunDiv {

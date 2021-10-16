@@ -1,13 +1,18 @@
+// global variables
 const highScores = JSON.parse(localStorage.getItem("initialScore")) || [];
 const playAgainBtn = document.querySelector(".play-again-btn");
 
+// onload function
 const onLoad = function () {
   renderScore();
 };
+
+// redirect function
 const redirectToPlay = function () {
   window.location.href = "./index.html";
 };
 
+// construct render score function
 const renderScore = function () {
   const mainContainer = document.getElementById("main-container");
 
@@ -21,6 +26,7 @@ const renderScore = function () {
   const scoreDiv = document.createElement("ul");
   scoreDiv.setAttribute("class", "answer-btn-container");
 
+  // for each loops around each initial value held in the LS
   const scoreLoop = function (each, i, array) {
     const scoreList = document.createElement("li");
     scoreList.setAttribute("class", "myButton score-list");
@@ -30,10 +36,9 @@ const renderScore = function () {
 
   highScores.forEach(scoreLoop);
 
+  // button to play again
   const playAgainBtn = document.createElement("button");
   playAgainBtn.setAttribute("class", "play-again-btn");
-  // playAgainBtn.setAttribute("type", "submit");
-  // playAgainBtn.setAttribute("value", "Submit");
   playAgainBtn.textContent = "Play again";
 
   startContainer.append(scoreHeading, scoreDiv, playAgainBtn);

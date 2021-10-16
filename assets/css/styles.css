@@ -21,6 +21,7 @@ h3 {
   letter-spacing: 2px;
 }
 
+/* navbar styling */
 header {
   background-color: rgb(0, 0, 0);
   color: white;
@@ -33,11 +34,13 @@ header {
   justify-content: space-between;
   padding: 3rem;
 }
+
 header a {
   text-decoration: none;
   color: white;
 }
 
+/* large background image */
 .background-img {
   height: 100%;
   background-image: url(../images/anime.jpg);
@@ -45,12 +48,14 @@ header a {
   background-size: cover;
   position: relative;
 }
+
 .main-container {
   display: flex;
   justify-content: center;
   text-align: center;
 }
 
+/* center div that holds the content */
 .start-container {
   max-width: 80%;
   margin-top: 11rem;
@@ -61,12 +66,14 @@ header a {
   box-shadow: 0 0 30px 10px rgb(255, 255, 255), 0 0 60px 30px rgb(235, 46, 46);
   border-radius: 20px;
 }
+
 .sm-question-font {
   font-family: "Open Sans", sans-serif;
   letter-spacing: 0;
   font-size: 2rem;
 }
 
+/* button styling */
 .input-btn,
 .myButton {
   background: linear-gradient(to bottom, #fe1a00 5%, #ce0100 100%);
@@ -82,6 +89,7 @@ header a {
   padding: 6px 24px;
   text-decoration: none;
 }
+
 .input-btn:hover,
 .myButton:hover {
   background: linear-gradient(to bottom, #ce0100 5%, #fe1a00 100%);
@@ -94,12 +102,14 @@ header a {
   top: 1px;
 }
 
+/* selection of options container */
 .answer-btn-container {
   display: flex;
   flex-direction: column;
   list-style: none;
 }
 
+/* high scores  */
 h1.scores-titles {
   margin-bottom: 4rem;
 }
@@ -109,12 +119,12 @@ ul.answer-btn-container {
   margin: 0;
   padding: 0;
 }
+
 .answer-btn-container button {
   margin: 5px;
 }
 
 .score-list {
-  justify-content: space-between;
   margin-bottom: 2rem;
   cursor: default;
 }
@@ -135,6 +145,7 @@ ul.answer-btn-container {
   text-decoration: none;
 }
 
+/* animation images */
 .gunDiv {
   height: 100vh;
   width: 60rem;
@@ -145,7 +156,6 @@ ul.answer-btn-container {
   animation-delay: 0;
   animation-iteration-count: 1;
   animation-direction: alternate-reverse;
-  /* left: -10rem; */
 }
 
 .gameOverWording {
@@ -156,7 +166,7 @@ ul.answer-btn-container {
   font-size: 15rem;
   letter-spacing: 1.5rem;
   color: #a00909;
-  text-shadow: 0 0 2rem #000; /* horizontal-offset vertical-offset 'blur' colour */
+  text-shadow: 0 0 2rem #000;
   -moz-text-shadow: 0 0 2rem #000;
   -webkit-text-shadow: 0 0 2rem #000;
 }
@@ -166,10 +176,13 @@ ul.answer-btn-container {
   height: 100vh;
 }
 
+/* right answer alert  */
 .right-answer {
   color: rgb(243, 133, 7);
   background-color: rgb(173, 42, 2);
 }
+
+/* wrong answer alert */
 .wrong-answer {
   color: rgb(7, 7, 7);
   background-color: rgb(173, 42, 2);
@@ -183,12 +196,13 @@ ul.answer-btn-container {
   border: 1px solid transparent;
   border-radius: 1rem;
   font-family: "Bangers", cursive;
-  text-shadow: 0 0 2rem #000; /* horizontal-offset vertical-offset 'blur' colour */
+  text-shadow: 0 0 2rem #000;
   -moz-text-shadow: 0 0 2rem #000;
   -webkit-text-shadow: 0 0 2rem #000;
   box-shadow: 0 0 30px 10px rgb(8, 8, 8), 0 0 20px 10px rgb(235, 46, 46);
 }
 
+/* user initial input */
 form {
   display: flex;
   flex-direction: row;
@@ -212,6 +226,7 @@ input:focus {
   color: white;
 }
 
+/* media queries */
 @media (max-width: 576px) {
   .start-container {
     margin-top: 8rem;
@@ -221,19 +236,21 @@ input:focus {
     font-size: 2.5rem;
     margin-top: 0;
   }
+
   .input-btn {
     max-width: 3.5rem;
     padding: 5px;
     font-size: 1rem;
   }
+
   .sm-question-font {
     font-size: 1.5rem;
     font-family: "Open Sans", sans-serif;
   }
+
   .input-btn,
   .myButton {
     font-size: 1rem;
-    /* font-family: "Open Sans", sans-serif; */
   }
 
   .gunDiv {
@@ -244,6 +261,7 @@ input:focus {
     left: 0%;
     animation: fade-out ease 7s;
   }
+
   .gunDiv img {
     width: 100%;
   }
@@ -254,6 +272,7 @@ input:focus {
   }
 }
 
+/* key frame animation */
 @keyframes slide-up {
   0% {
     bottom: -50%;
@@ -271,6 +290,7 @@ input:focus {
   }
 }
 
+/* key frame animation */
 @keyframes fade-out {
   0% {
     opacity: 1;

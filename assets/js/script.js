@@ -33,22 +33,29 @@ const questionsArray = [
   },
 ];
 
+// global Variables
+let counter = 40;
+let currentQuestionIndex = 0;
+const startBtn = document.getElementById("startBtn");
+const startContainer = document.getElementById("start-container");
 const counterSpan = document.getElementById("timer");
 const counterDiv = document.getElementById("counter-div");
 const mainElement = document.querySelector(".main-container");
 const gameOverImg2 = "assets/images/anime-blood.png";
 const gameOverImg1 = "assets/images/anime-gun.png";
+const inputField = document.getElementById("playerInitials");
 
+// game over function -renders a sequenced animation
 const gameOver = function () {
   setTimeout(function () {
     startContainer.remove();
-  }, 600);
+  }, 200);
 
   const gunDiv = document.createElement("div");
   gunDiv.setAttribute("class", "gunDiv");
   setTimeout(function () {
     mainElement.append(gunDiv);
-  }, 800);
+  }, 200);
 
   const imgGun = document.createElement("img");
   imgGun.setAttribute("src", gameOverImg1);
@@ -82,12 +89,7 @@ const gameOver = function () {
   }, 4000);
 };
 
-// timer
-let counter = 40;
-let currentQuestionIndex = 0;
-const startBtn = document.getElementById("startBtn");
-const startContainer = document.getElementById("start-container");
-
+// constructing and rendering the register score form
 const renderRegisterScore = function () {
   const initialBtn = document.createElement("button");
   initialBtn.setAttribute("class", "input-btn");
@@ -127,6 +129,7 @@ const renderRegisterScore = function () {
   mainElement.appendChild(scoreDiv);
 };
 
+// alert construction for wrong answer
 const constructWrongAlert = function () {
   const wrongAnswer = document.createElement("div");
   wrongAnswer.setAttribute("class", "alert wrong-answer");
@@ -135,6 +138,7 @@ const constructWrongAlert = function () {
   return wrongAnswer;
 };
 
+// alert construction for right answer
 const constructRightAlert = function () {
   const rightAnswer = document.createElement("div");
   rightAnswer.setAttribute("class", "alert right-answer");
@@ -143,6 +147,7 @@ const constructRightAlert = function () {
   return rightAnswer;
 };
 
+// alert function for wrong answer
 const renderWrongAlert = function () {
   const alert = constructWrongAlert();
   mainElement.appendChild(alert);
@@ -150,9 +155,10 @@ const renderWrongAlert = function () {
     alert.remove();
     clearTimeout(delay);
   };
-  const delay = setTimeout(afterDelay, 1000);
+  const delay = setTimeout(afterDelay, 800);
 };
 
+// alert function for wrong answer
 const renderRightAlert = function () {
   const alert = constructRightAlert();
   mainElement.appendChild(alert);
@@ -160,22 +166,25 @@ const renderRightAlert = function () {
     alert.remove();
     clearTimeout(delay);
   };
-  const delay = setTimeout(afterDelay, 1000);
+  const delay = setTimeout(afterDelay, 800);
 };
 
+// function verifies is answer is correct
 const verifyAnswer = function (event) {
   const target = event.target;
   if (target.getAttribute("class") === "myButton") {
     const chosenAnswer = target.getAttribute("data-message");
     const correctAnswer = questionsArray[currentQuestionIndex].correctAnswer;
+    // if teh answer is incorrect take 5 seconds off the counter
     if (chosenAnswer !== correctAnswer) {
       counter -= 5;
       renderWrongAlert();
     } else {
       renderRightAlert();
     }
+    // if the answer is correct then move on to the next question
     currentQuestionIndex++;
-
+    // if no more questions or if counter is 0 go to game over
     if (currentQuestionIndex < questionsArray.length) {
       startContainer.innerHTML = "";
       renderQuestion();
@@ -189,6 +198,7 @@ const verifyAnswer = function (event) {
   }
 };
 
+// construct questions container
 const renderQuestion = function () {
   const currentQuestion = questionsArray[currentQuestionIndex];
 
@@ -214,6 +224,7 @@ const renderQuestion = function () {
   answerDiv.addEventListener("click", verifyAnswer);
 };
 
+// function to save user score against their initials
 const registerScore = function (event) {
   event.preventDefault();
   const playerInitials = document.getElementById("playerInitials").value;
@@ -223,17 +234,18 @@ const registerScore = function (event) {
     score: playerScore,
   };
   scoreStorage(data);
+  // redirects to high scores page once score submitted
   window.location.href = "./highScores.html";
 };
 
-const inputField = document.getElementById("playerInitials");
-
+// local storage
 const scoreStorage = function (data) {
   const highScores = JSON.parse(localStorage.getItem("initialScore")) || [];
   highScores.push(data);
   localStorage.setItem("initialScore", JSON.stringify(highScores));
 };
 
+// timer function to go to game over if counter is 0 or no more questions to ask
 const startTimer = function () {
   const countDown = function () {
     if (counter <= 0 || currentQuestionIndex > questionsArray.length - 1) {
@@ -244,10 +256,10 @@ const startTimer = function () {
       counterSpan.textContent = counter;
     }
   };
-
   const timer = setInterval(countDown, 1000);
 };
 
+// start quiz function
 const startQuiz = function () {
   startContainer.innerHTML = "";
   renderQuestion();

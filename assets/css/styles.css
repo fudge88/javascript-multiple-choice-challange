@@ -58,6 +58,7 @@ header a {
 /* center div that holds the content */
 .start-container {
   max-width: 80%;
+  min-width: 40%;
   margin-top: 11rem;
   padding: 5rem;
   font-size: 1.5rem;
@@ -125,10 +126,20 @@ ul.answer-btn-container {
 }
 
 .score-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   margin-bottom: 2rem;
   cursor: default;
 }
 
+.control-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.clear-score-btn,
 .play-again-btn {
   background: linear-gradient(to bottom, #fe5d00 5%, #ce5d00 100%);
   background-color: #fe6600;
@@ -269,6 +280,10 @@ input:focus {
   .gameOverWording {
     font-size: 10rem;
     letter-spacing: 1rem;
+  }
+
+  .control-buttons-container {
+    flex-direction: column;
   }
 }
 

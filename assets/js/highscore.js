@@ -1,14 +1,25 @@
 // global variables
 const highScores = JSON.parse(localStorage.getItem("initialScore")) || [];
 const playAgainBtn = document.querySelector(".play-again-btn");
-// global variables
-const playAgainButton = document.getElementById("playAgainBtn");
-const clearScoreButton = document.getElementById("clearScoreBtn");
 const highScoreListUL = document.getElementById("highScoreListUL");
 
 // onload function
 const onLoad = function () {
+  clearScore();
+  playAgain();
   renderScore();
+};
+
+const playAgain = function () {
+  console.log("play again");
+  // location.assign("./index.html");
+};
+
+// clear history function
+const clearScore = function () {
+  console.log("clear history");
+  // localStorage.clear();
+  // highScoreListUL.remove();
 };
 
 // construct render score function
@@ -61,20 +72,16 @@ const renderScore = function () {
 
   startContainer.append(scoreHeading, scoreDiv, btnControlContainer);
   mainContainer.append(startContainer);
-};
 
-// redirect to play again function
-const playAgain = function () {
-  location.assign("./index.html");
+  playAgainButton.addEventListener("click", playAgain);
+  clearScoreButton.addEventListener("click", clearScore);
 };
-
-// clear history function
-const clearScore = function () {
-  localStorage.clear();
-  highScoreListUL.remove();
-};
-
-// playAgainButton.addEventListener("click", playAgain);
-// clearScoreButton.addEventListener("click", clearScore);
 
 window.addEventListener("load", onLoad);
+
+// global variables
+// global variables
+// const playAgainButton = document.getElementById("playAgainBtn");
+// const clearScoreButton = document.getElementById("clearScoreBtn");
+
+// redirect to play again function

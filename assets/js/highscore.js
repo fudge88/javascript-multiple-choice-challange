@@ -1,13 +1,22 @@
 // global variables
 const highScores = JSON.parse(localStorage.getItem("initialScore")) || [];
 
+// reverts user back to start page
 const playAgain = function () {
   location.assign("./index.html");
 };
 
 // clear history function
 const clearScore = function () {
-  localStorage.clear();
+  localStorage.removeItem("initialScore");
+  renderNoScores();
+};
+
+// if scores are cleared- removed the high score list
+const renderNoScores = function () {
+  document.getElementById("highScoreListUL").remove();
+  el = document.querySelector(".scores-titles");
+  el.innerHTML = "No high scores";
 };
 
 // construct render score function

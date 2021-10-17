@@ -182,7 +182,7 @@ const verifyAnswer = function (event) {
     } else {
       renderRightAlert();
     }
-    // if the answer is correct then move on to the next question
+    // move on to the next question
     currentQuestionIndex++;
     // if no more questions or if counter is 0 go to game over
     if (currentQuestionIndex < questionsArray.length) {

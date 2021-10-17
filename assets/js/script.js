@@ -189,7 +189,7 @@ const verifyAnswer = function (event) {
       startContainer.innerHTML = "";
       renderQuestion();
     } else {
-      if (count > 0) {
+      if (counter > 0) {
         renderQuestion();
       } else {
         gameOver();

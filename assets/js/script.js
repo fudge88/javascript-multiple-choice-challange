@@ -36,55 +36,48 @@ const questionsArray = [
 // global Variables
 let counter = 40;
 let currentQuestionIndex = 0;
-const startBtn = document.getElementById("startBtn");
-const startContainer = document.getElementById("start-container");
-const counterSpan = document.getElementById("timer");
-const counterDiv = document.getElementById("counter-div");
-const mainElement = document.querySelector(".main-container");
+const startBtn = $("#startBtn");
+const startContainer = $("#start-container");
+const counterSpan = $("#timer");
+const counterDiv = $("#counter-div");
+const mainElement = $(".main-container");
 const gameOverImg2 = "assets/images/anime-blood.png";
 const gameOverImg1 = "assets/images/anime-gun.png";
-const inputField = document.getElementById("playerInitials");
+const inputField = $("#playerInitials");
 
 // game over function -renders a sequenced animation
-const gameOver = function () {
-  setTimeout(function () {
+const gameOver = () => {
+  setTimeout(() => {
     startContainer.remove();
   }, 200);
+  const gunDiv = `<div class="gunDiv">
+  <img src=${gameOverImg1} class="gameOverGun" id="imgGun"/>
+  </div>`;
 
-  const gunDiv = document.createElement("div");
-  gunDiv.setAttribute("class", "gunDiv");
-  setTimeout(function () {
+  setTimeout(() => {
     mainElement.append(gunDiv);
   }, 200);
 
-  const imgGun = document.createElement("img");
-  imgGun.setAttribute("src", gameOverImg1);
-  imgGun.setAttribute("class", "gameOverGun");
-  gunDiv.append(imgGun);
-  setTimeout(function () {
-    gunDiv.remove();
+  setTimeout(() => {
+    $(gunDiv).remove();
   }, 3800);
 
-  const imgBlood = document.createElement("img");
-  imgBlood.setAttribute("src", gameOverImg2);
-  imgBlood.setAttribute("class", "gameOverImg");
-  setTimeout(function () {
+  const imgBlood = `<img src=${gameOverImg2} class="gameOverImg"/>`;
+  setTimeout(() => {
     mainElement.append(imgBlood);
   }, 1500);
 
-  const gameOverWording = document.createElement("h1");
-  gameOverWording.setAttribute("class", "gameOverWording");
-  gameOverWording.textContent = "GAME OVER";
-  setTimeout(function () {
+  const gameOverWording = `<h1 class="gameOverWording">GAME OVER</h1>`;
+  setTimeout(() => {
     mainElement.append(gameOverWording);
   }, 1700);
 
-  setTimeout(function () {
-    imgBlood.remove();
-    gameOverWording.remove();
+  setTimeout(() => {
+    $(imgBlood).remove();
+    $(gameOverWording).remove();
   }, 4000);
 
-  setTimeout(function () {
+  setTimeout(() => {
     renderRegisterScore();
   }, 4000);
 };
@@ -126,7 +119,7 @@ const renderRegisterScore = function () {
   scoreForm.addEventListener("submit", registerScore);
   scoreDiv.appendChild(scoreForm);
 
-  mainElement.appendChild(scoreDiv);
+  mainElement.append(scoreDiv);
 };
 
 // alert construction for wrong answer
@@ -150,7 +143,7 @@ const constructRightAlert = function () {
 // alert function for wrong answer
 const renderWrongAlert = function () {
   const alert = constructWrongAlert();
-  mainElement.appendChild(alert);
+  mainElement.append(alert);
   const afterDelay = function () {
     alert.remove();
     clearTimeout(delay);
@@ -161,7 +154,7 @@ const renderWrongAlert = function () {
 // alert function for wrong answer
 const renderRightAlert = function () {
   const alert = constructRightAlert();
-  mainElement.appendChild(alert);
+  mainElement.append(alert);
   const afterDelay = function () {
     alert.remove();
     clearTimeout(delay);
@@ -186,7 +179,7 @@ const verifyAnswer = function (event) {
     currentQuestionIndex++;
     // if no more questions or if counter is 0 go to game over
     if (currentQuestionIndex < questionsArray.length) {
-      startContainer.innerHTML = "";
+      startContainer.empty();
       renderQuestion();
     } else {
       if (counter > 0) {
@@ -219,8 +212,8 @@ const renderQuestion = function () {
 
   currentQuestion.answers.forEach(answerLoop);
 
-  startContainer.appendChild(question);
-  startContainer.appendChild(answerDiv);
+  startContainer.append(question);
+  startContainer.append(answerDiv);
   answerDiv.addEventListener("click", verifyAnswer);
 };
 
@@ -261,8 +254,8 @@ const startTimer = function () {
 
 // start quiz function
 const startQuiz = function () {
-  startContainer.innerHTML = "";
+  startContainer.empty();
   renderQuestion();
   startTimer();
 };
-startBtn.addEventListener("click", startQuiz);
+startBtn.on("click", startQuiz);

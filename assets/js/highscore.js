@@ -15,7 +15,7 @@ const clearScore = function () {
 // if scores are cleared- removed the high score list
 const renderNoScores = function () {
   document.getElementById("highScoreListUL").remove();
-  el = document.querySelector(".scores-titles");
+  const el = document.querySelector(".scores-titles");
   el.innerHTML = "No high scores";
 };
 

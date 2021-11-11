@@ -1,40 +1,5 @@
-const questionsArray = [
-  {
-    questions: "Pablo Escobar began his criminal career as",
-    answers: [
-      "Gambling and trafficking ringleader",
-      "Emerald and arms dealer",
-      "Political corruptor",
-      "Tomb and car thief",
-    ],
-    correctAnswer: "Tomb and car thief",
-  },
-  {
-    questions:
-      "What was Pablo Escobar doing when the Colombian police commandos surrounded and killed him",
-    answers: [
-      "Having a secret meeting with DEA covered agents",
-      "Counting his money",
-      "Talking by phone with his son",
-      "Cleaning his guns",
-    ],
-    correctAnswer: "Talking by phone with his son",
-  },
-  {
-    questions: "Give the nickname of the famous criminal Joaquin Guzman",
-    answers: ["Baby Face", "Tony Montana", "Escobar", "El Chapo"],
-    correctAnswer: "El Chapo",
-  },
-  {
-    questions:
-      "One of the closest partners of Escobar was Gonzalo Rodriguez Gacha. What was Rodriguez's nickname?",
-    answers: ["El Mexicano", "Pinina", "El Sicario", "Popeye"],
-    correctAnswer: "El Mexicano",
-  },
-];
-
 // global Variables
-let counter = 40;
+let counter = questionsArray.length * 10;
 let currentQuestionIndex = 0;
 const startBtn = $("#startBtn");
 const startContainer = $("#start-container");
@@ -193,6 +158,7 @@ const verifyAnswer = function (event) {
 
 // construct questions container
 const renderQuestion = function () {
+  // use the selected choices array instead of questionsArray
   const currentQuestion = questionsArray[currentQuestionIndex];
 
   const question = document.createElement("h1");
@@ -246,14 +212,22 @@ const startTimer = function () {
       gameOver();
     } else {
       counter -= 1;
-      counterSpan.textContent = counter;
+      counterSpan.text(counter);
     }
   };
   const timer = setInterval(countDown, 1000);
 };
+const getQuestionType = () => {
+  // function that allows teh user to select their questions
+  // get value the user has selected
+  // can add an empty array in GLOBAL to push teh selected choices and the SPREAD
+  //
+};
 
 // start quiz function
 const startQuiz = function () {
+  // function that allows teh user to select their questions
+  getQuestionType();
   startContainer.empty();
   renderQuestion();
   startTimer();

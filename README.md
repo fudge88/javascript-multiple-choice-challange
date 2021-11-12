@@ -91,3 +91,8 @@ The wireframe below, shows the skeletal plan of the app. The general concept was
 [Mozilla.org](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
 
 [StackOverflow](https://stackoverflow.com/questions/9329446/for-each-over-an-array-in-javascript)
+
+## License
+
+This project is licensed under the terms of the MIT license.
+

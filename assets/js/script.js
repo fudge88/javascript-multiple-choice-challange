@@ -9,6 +9,7 @@ const mainElement = $(".main-container");
 const gameOverImg2 = "assets/images/anime-blood.png";
 const gameOverImg1 = "assets/images/anime-gun.png";
 const inputField = $("#playerInitials");
+const scoreForm = $("#score-form");
 
 // game over function -renders a sequenced animation
 const gameOver = () => {
@@ -50,40 +51,49 @@ const gameOver = () => {
 // constructing and rendering the register score form
 
 const renderRegisterScore = () => {
-  const initialBtn = document.createElement("button");
-  initialBtn.setAttribute("class", "input-btn");
-  initialBtn.setAttribute("type", "submit");
-  initialBtn.setAttribute("value", "Submit");
-  initialBtn.textContent = "Save";
+  const scoreDiv = `<div class="start-container" id="score-container">
+  <h1>Challenge Complete!</h1>
+  <p>You Scored: </p>
+  <span>counter</span>
+  <form id="score-form" >
+  <input type="text" id="playerInitials" placeholder="Initial here to save score"></input>
+  <button class="input-btn" type="submit" value="submit">Save</button>
+  </form>
+  </div>`;
+  // const initialBtn = document.createElement("button");
+  // initialBtn.setAttribute("class", "input-btn");
+  // initialBtn.setAttribute("type", "submit");
+  // initialBtn.setAttribute("value", "Submit");
+  // initialBtn.textContent = "Save";
 
-  const initialInput = document.createElement("input");
-  initialInput.setAttribute("type", "text");
-  initialInput.setAttribute("id", "playerInitials");
-  initialInput.setAttribute("placeholder", "Initial here to save score");
+  // const initialInput = document.createElement("input");
+  // initialInput.setAttribute("type", "text");
+  // initialInput.setAttribute("id", "playerInitials");
+  // initialInput.setAttribute("placeholder", "Initial here to save score");
 
-  const scoreForm = document.createElement("form");
+  // const scoreForm = document.createElement("form");
 
-  const scoreSpan = document.createElement("span");
-  scoreSpan.textContent = counter;
+  // const scoreSpan = document.createElement("span");
+  // scoreSpan.textContent = counter;
 
-  const yourScore = document.createElement("p");
-  yourScore.textContent = "You Scored: ";
+  // const yourScore = document.createElement("p");
+  // yourScore.textContent = "You Scored: ";
 
-  const scoreInputHeading = document.createElement("h1");
-  scoreInputHeading.textContent = "Challenge Complete!";
+  // const scoreInputHeading = document.createElement("h1");
+  // scoreInputHeading.textContent = "Challenge Complete!";
 
-  const scoreDiv = document.createElement("div");
-  scoreDiv.setAttribute("class", "start-container");
-  scoreDiv.setAttribute("id", "score-container");
+  // const scoreDiv = document.createElement("div");
+  // scoreDiv.setAttribute("class", "start-container");
+  // scoreDiv.setAttribute("id", "score-container");
 
-  yourScore.appendChild(scoreSpan);
-  scoreForm.appendChild(initialInput);
-  scoreForm.appendChild(initialBtn);
+  // yourScore.appendChild(scoreSpan);
+  // scoreForm.appendChild(initialInput);
+  // scoreForm.appendChild(initialBtn);
 
-  scoreDiv.appendChild(scoreInputHeading);
-  scoreDiv.appendChild(yourScore);
-  scoreForm.addEventListener("submit", registerScore);
-  scoreDiv.appendChild(scoreForm);
+  // scoreDiv.appendChild(scoreInputHeading);
+  // scoreDiv.appendChild(yourScore);
+  scoreForm.on("submit", registerScore);
+  // scoreDiv.appendChild(scoreForm);
 
   mainElement.append(scoreDiv);
 };
@@ -105,7 +115,7 @@ const renderWrongAlert = () => {
   const alert = constructWrongAlert();
   mainElement.append(alert);
   const afterDelay = function () {
-    alert.remove();
+    $(alert).remove();
     clearTimeout(delay);
   };
   const delay = setTimeout(afterDelay, 800);
@@ -116,7 +126,7 @@ const renderRightAlert = () => {
   const alert = constructRightAlert();
   mainElement.append(alert);
   const afterDelay = function () {
-    alert.remove();
+    $(alert).remove();
     clearTimeout(delay);
   };
   const delay = setTimeout(afterDelay, 800);

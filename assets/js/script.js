@@ -48,7 +48,8 @@ const gameOver = () => {
 };
 
 // constructing and rendering the register score form
-const renderRegisterScore = function () {
+
+const renderRegisterScore = () => {
   const initialBtn = document.createElement("button");
   initialBtn.setAttribute("class", "input-btn");
   initialBtn.setAttribute("type", "submit");
@@ -88,25 +89,19 @@ const renderRegisterScore = function () {
 };
 
 // alert construction for wrong answer
-const constructWrongAlert = function () {
-  const wrongAnswer = document.createElement("div");
-  wrongAnswer.setAttribute("class", "alert wrong-answer");
-  wrongAnswer.textContent = "WRONG ANSWER! You lose 5 seconds";
-
+const constructWrongAlert = () => {
+  const wrongAnswer = `<div class="alert wrong-answer">WRONG ANSWER! You lose 5 seconds</div>`;
   return wrongAnswer;
 };
 
 // alert construction for right answer
-const constructRightAlert = function () {
-  const rightAnswer = document.createElement("div");
-  rightAnswer.setAttribute("class", "alert right-answer");
-  rightAnswer.textContent = "WELL DONE! You have answered correctly";
-
+const constructRightAlert = () => {
+  const rightAnswer = `<div class="alert right-answer">WELL DONE! You have answered correctly</div>`;
   return rightAnswer;
 };
 
 // alert function for wrong answer
-const renderWrongAlert = function () {
+const renderWrongAlert = () => {
   const alert = constructWrongAlert();
   mainElement.append(alert);
   const afterDelay = function () {
@@ -117,7 +112,7 @@ const renderWrongAlert = function () {
 };
 
 // alert function for wrong answer
-const renderRightAlert = function () {
+const renderRightAlert = () => {
   const alert = constructRightAlert();
   mainElement.append(alert);
   const afterDelay = function () {
@@ -128,7 +123,7 @@ const renderRightAlert = function () {
 };
 
 // function verifies is answer is correct
-const verifyAnswer = function (event) {
+const verifyAnswer = (event) => {
   const target = event.target;
   if (target.getAttribute("class") === "myButton") {
     const chosenAnswer = target.getAttribute("data-message");
@@ -157,7 +152,7 @@ const verifyAnswer = function (event) {
 };
 
 // construct questions container
-const renderQuestion = function () {
+const renderQuestion = () => {
   // use the selected choices array instead of questionsArray
   const currentQuestion = questionsArray[currentQuestionIndex];
 
@@ -168,7 +163,7 @@ const renderQuestion = function () {
   const answerDiv = document.createElement("div");
   answerDiv.setAttribute("class", "answer-btn-container");
 
-  const answerLoop = function (each, i, array) {
+  const answerLoop = (each, i, array) => {
     const answerButton = document.createElement("button");
     answerButton.setAttribute("data-message", each);
     answerButton.setAttribute("class", "myButton");
@@ -184,7 +179,7 @@ const renderQuestion = function () {
 };
 
 // function to save user score against their initials
-const registerScore = function (event) {
+const registerScore = (event) => {
   event.preventDefault();
   const playerInitials = document.getElementById("playerInitials").value;
   const playerScore = counter;
@@ -198,14 +193,14 @@ const registerScore = function (event) {
 };
 
 // local storage
-const scoreStorage = function (data) {
+const scoreStorage = (data) => {
   const highScores = JSON.parse(localStorage.getItem("initialScore")) || [];
   highScores.push(data);
   localStorage.setItem("initialScore", JSON.stringify(highScores));
 };
 
 // timer function to go to game over if counter is 0 or no more questions to ask
-const startTimer = function () {
+const startTimer = () => {
   const countDown = function () {
     if (counter <= 0 || currentQuestionIndex > questionsArray.length - 1) {
       clearInterval(timer);

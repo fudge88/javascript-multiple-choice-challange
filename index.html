@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crime Quiz Challenge</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <!-- css link -->
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+  <body class="background-img">
+
+    <!-- header -->
+    <header>
+      <div><a href="./highScores.html">View Highest Scores</a></div>
+      <div id="counter-div">
+        Timer:
+        <span id="timer">0</span>
+      </div>
+    </header>
+    
+      <main class="main-container"> 
+        <!-- start div -->
+       <div id="start-container" class="start-container">
+          <h1 class="question-font">True Crime Quiz</h1>
+          <p>
+            Aim to get the answers right! Incorrect answers will deduct 5 seconds
+            from your timer. </p>
+            <p>Can you you beat the quickest time?</p>
+          </p>
+          <p>Click on Start to begin</p>
+          <div>
+            <button id="startBtn" class="myButton">Start</button>
+          </div>
+        </div>
+        
+      </main>
+    </body>
+    <!-- js script link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./assets/utils/questions.js"></script>
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>

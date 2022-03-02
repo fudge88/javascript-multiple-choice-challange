@@ -1,139 +1,142 @@
+
 // global Variables
-let counter = questionsArray.length * 10;
+let counter = 40;
 let currentQuestionIndex = 0;
-const startBtn = $("#startBtn");
-const startContainer = $("#start-container");
-const counterSpan = $("#timer");
-const counterDiv = $("#counter-div");
-const mainElement = $(".main-container");
+const startBtn = document.getElementById("startBtn");
+const startContainer = document.getElementById("start-container");
+const counterSpan = document.getElementById("timer");
+const counterDiv = document.getElementById("counter-div");
+const mainElement = document.querySelector(".main-container");
 const gameOverImg2 = "assets/images/anime-blood.png";
 const gameOverImg1 = "assets/images/anime-gun.png";
-const inputField = $("#playerInitials");
-const scoreForm = $("#score-form");
+const inputField = document.getElementById("playerInitials");
 
 // game over function -renders a sequenced animation
-const gameOver = () => {
-  setTimeout(() => {
+const gameOver = function () {
+  setTimeout(function () {
     startContainer.remove();
   }, 200);
-  const gunDiv = `<div class="gunDiv">
-  <img src=${gameOverImg1} class="gameOverGun" id="imgGun"/>
-  </div>`;
 
-  setTimeout(() => {
+  const gunDiv = document.createElement("div");
+  gunDiv.setAttribute("class", "gunDiv");
+  setTimeout(function () {
     mainElement.append(gunDiv);
   }, 200);
 
-  setTimeout(() => {
-    $(gunDiv).remove();
+  const imgGun = document.createElement("img");
+  imgGun.setAttribute("src", gameOverImg1);
+  imgGun.setAttribute("class", "gameOverGun");
+  gunDiv.append(imgGun);
+  setTimeout(function () {
+    gunDiv.remove();
   }, 3800);
 
-  const imgBlood = `<img src=${gameOverImg2} class="gameOverImg"/>`;
-  setTimeout(() => {
+  const imgBlood = document.createElement("img");
+  imgBlood.setAttribute("src", gameOverImg2);
+  imgBlood.setAttribute("class", "gameOverImg");
+  setTimeout(function () {
     mainElement.append(imgBlood);
   }, 1500);
 
-  const gameOverWording = `<h1 class="gameOverWording">GAME OVER</h1>`;
-  setTimeout(() => {
+  const gameOverWording = document.createElement("h1");
+  gameOverWording.setAttribute("class", "gameOverWording");
+  gameOverWording.textContent = "GAME OVER";
+  setTimeout(function () {
     mainElement.append(gameOverWording);
   }, 1700);
 
-  setTimeout(() => {
-    $(imgBlood).remove();
-    $(gameOverWording).remove();
+  setTimeout(function () {
+    imgBlood.remove();
+    gameOverWording.remove();
   }, 4000);
 
-  setTimeout(() => {
+  setTimeout(function () {
     renderRegisterScore();
   }, 4000);
 };
 
 // constructing and rendering the register score form
+const renderRegisterScore = function () {
+  const initialBtn = document.createElement("button");
+  initialBtn.setAttribute("class", "input-btn");
+  initialBtn.setAttribute("type", "submit");
+  initialBtn.setAttribute("value", "Submit");
+  initialBtn.textContent = "Save";
 
-const renderRegisterScore = () => {
-  const scoreDiv = `<div class="start-container" id="score-container">
-  <h1>Challenge Complete!</h1>
-  <p>You Scored: </p>
-  <span>counter</span>
-  <form id="score-form" >
-  <input type="text" id="playerInitials" placeholder="Initial here to save score"></input>
-  <button class="input-btn" type="submit" value="submit">Save</button>
-  </form>
-  </div>`;
-  // const initialBtn = document.createElement("button");
-  // initialBtn.setAttribute("class", "input-btn");
-  // initialBtn.setAttribute("type", "submit");
-  // initialBtn.setAttribute("value", "Submit");
-  // initialBtn.textContent = "Save";
+  const initialInput = document.createElement("input");
+  initialInput.setAttribute("type", "text");
+  initialInput.setAttribute("id", "playerInitials");
+  initialInput.setAttribute("placeholder", "Initial here to save score");
 
-  // const initialInput = document.createElement("input");
-  // initialInput.setAttribute("type", "text");
-  // initialInput.setAttribute("id", "playerInitials");
-  // initialInput.setAttribute("placeholder", "Initial here to save score");
+  const scoreForm = document.createElement("form");
 
-  // const scoreForm = document.createElement("form");
+  const scoreSpan = document.createElement("span");
+  scoreSpan.textContent = counter;
 
-  // const scoreSpan = document.createElement("span");
-  // scoreSpan.textContent = counter;
+  const yourScore = document.createElement("p");
+  yourScore.textContent = "You Scored: ";
 
-  // const yourScore = document.createElement("p");
-  // yourScore.textContent = "You Scored: ";
+  const scoreInputHeading = document.createElement("h1");
+  scoreInputHeading.textContent = "Challenge Complete!";
 
-  // const scoreInputHeading = document.createElement("h1");
-  // scoreInputHeading.textContent = "Challenge Complete!";
+  const scoreDiv = document.createElement("div");
+  scoreDiv.setAttribute("class", "start-container");
+  scoreDiv.setAttribute("id", "score-container");
 
-  // const scoreDiv = document.createElement("div");
-  // scoreDiv.setAttribute("class", "start-container");
-  // scoreDiv.setAttribute("id", "score-container");
+  yourScore.appendChild(scoreSpan);
+  scoreForm.appendChild(initialInput);
+  scoreForm.appendChild(initialBtn);
 
-  // yourScore.appendChild(scoreSpan);
-  // scoreForm.appendChild(initialInput);
-  // scoreForm.appendChild(initialBtn);
+  scoreDiv.appendChild(scoreInputHeading);
+  scoreDiv.appendChild(yourScore);
+  scoreForm.addEventListener("submit", registerScore);
+  scoreDiv.appendChild(scoreForm);
 
-  // scoreDiv.appendChild(scoreInputHeading);
-  // scoreDiv.appendChild(yourScore);
-  scoreForm.on("submit", registerScore);
-  // scoreDiv.appendChild(scoreForm);
-
-  mainElement.append(scoreDiv);
+  mainElement.appendChild(scoreDiv);
 };
 
 // alert construction for wrong answer
-const constructWrongAlert = () => {
-  const wrongAnswer = `<div class="alert wrong-answer">WRONG ANSWER! You lose 5 seconds</div>`;
+const constructWrongAlert = function () {
+  const wrongAnswer = document.createElement("div");
+  wrongAnswer.setAttribute("class", "alert wrong-answer");
+  wrongAnswer.textContent = "WRONG ANSWER! You lose 5 seconds";
+
   return wrongAnswer;
 };
 
 // alert construction for right answer
-const constructRightAlert = () => {
-  const rightAnswer = `<div class="alert right-answer">WELL DONE! You have answered correctly</div>`;
+const constructRightAlert = function () {
+  const rightAnswer = document.createElement("div");
+  rightAnswer.setAttribute("class", "alert right-answer");
+  rightAnswer.textContent = "WELL DONE! You have answered correctly";
+
   return rightAnswer;
 };
 
 // alert function for wrong answer
-const renderWrongAlert = () => {
+const renderWrongAlert = function () {
   const alert = constructWrongAlert();
-  mainElement.append(alert);
+  mainElement.appendChild(alert);
   const afterDelay = function () {
-    $(alert).remove();
+    alert.remove();
     clearTimeout(delay);
   };
   const delay = setTimeout(afterDelay, 800);
 };
 
 // alert function for wrong answer
-const renderRightAlert = () => {
+const renderRightAlert = function () {
   const alert = constructRightAlert();
-  mainElement.append(alert);
+  mainElement.appendChild(alert);
   const afterDelay = function () {
-    $(alert).remove();
+    alert.remove();
     clearTimeout(delay);
   };
   const delay = setTimeout(afterDelay, 800);
 };
 
 // function verifies is answer is correct
-const verifyAnswer = (event) => {
+const verifyAnswer = function (event) {
   const target = event.target;
   if (target.getAttribute("class") === "myButton") {
     const chosenAnswer = target.getAttribute("data-message");
@@ -149,7 +152,7 @@ const verifyAnswer = (event) => {
     currentQuestionIndex++;
     // if no more questions or if counter is 0 go to game over
     if (currentQuestionIndex < questionsArray.length) {
-      startContainer.empty();
+      startContainer.innerHTML = "";
       renderQuestion();
     } else {
       if (counter > 0) {
@@ -162,8 +165,7 @@ const verifyAnswer = (event) => {
 };
 
 // construct questions container
-const renderQuestion = () => {
-  // use the selected choices array instead of questionsArray
+const renderQuestion = function () {
   const currentQuestion = questionsArray[currentQuestionIndex];
 
   const question = document.createElement("h1");
@@ -173,7 +175,7 @@ const renderQuestion = () => {
   const answerDiv = document.createElement("div");
   answerDiv.setAttribute("class", "answer-btn-container");
 
-  const answerLoop = (each, i, array) => {
+  const answerLoop = function (each, i, array) {
     const answerButton = document.createElement("button");
     answerButton.setAttribute("data-message", each);
     answerButton.setAttribute("class", "myButton");
@@ -183,13 +185,13 @@ const renderQuestion = () => {
 
   currentQuestion.answers.forEach(answerLoop);
 
-  startContainer.append(question);
-  startContainer.append(answerDiv);
+  startContainer.appendChild(question);
+  startContainer.appendChild(answerDiv);
   answerDiv.addEventListener("click", verifyAnswer);
 };
 
 // function to save user score against their initials
-const registerScore = (event) => {
+const registerScore = function (event) {
   event.preventDefault();
   const playerInitials = document.getElementById("playerInitials").value;
   const playerScore = counter;
@@ -203,38 +205,30 @@ const registerScore = (event) => {
 };
 
 // local storage
-const scoreStorage = (data) => {
+const scoreStorage = function (data) {
   const highScores = JSON.parse(localStorage.getItem("initialScore")) || [];
   highScores.push(data);
   localStorage.setItem("initialScore", JSON.stringify(highScores));
 };
 
 // timer function to go to game over if counter is 0 or no more questions to ask
-const startTimer = () => {
+const startTimer = function () {
   const countDown = function () {
     if (counter <= 0 || currentQuestionIndex > questionsArray.length - 1) {
       clearInterval(timer);
       gameOver();
     } else {
       counter -= 1;
-      counterSpan.text(counter);
+      counterSpan.textContent = counter;
     }
   };
   const timer = setInterval(countDown, 1000);
 };
-const getQuestionType = () => {
-  // function that allows teh user to select their questions
-  // get value the user has selected
-  // can add an empty array in GLOBAL to push teh selected choices and the SPREAD
-  //
-};
 
 // start quiz function
 const startQuiz = function () {
-  // function that allows teh user to select their questions
-  getQuestionType();
-  startContainer.empty();
+  startContainer.innerHTML = "";
   renderQuestion();
   startTimer();
 };
-startBtn.on("click", startQuiz);
+startBtn.addEventListener("click", startQuiz);
